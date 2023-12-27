@@ -1,0 +1,13 @@
+<li>
+    <div class="form-check">
+      <label class="form-check-label" [ngClass]="labelStrikethrough">
+        <input
+          type="checkbox"
+          [checked]="fullfilled"
+          (click)="toggleFullfilled()"
+        />
+        {{ name }}
+        <!-- <button (click)="handleDeleteWish(item)">delete</button> -->
+      </label>
+    </div>
+  </li>

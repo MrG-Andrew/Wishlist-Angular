@@ -6,6 +6,7 @@ import { WishItem } from './shared/models/wishItem';
 import { WishListComponent } from './wish-list/wish-list.component';
 import { AddWishFormComponent } from './add-wish-form/add-wish-form.component';
 import { WishFilterComponent } from './wish-filter/wish-filter.component';
+import { WishListItemComponent } from './wish-list-item/wish-list-item.component';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ import { WishFilterComponent } from './wish-filter/wish-filter.component';
     WishListComponent,
     AddWishFormComponent,
     WishFilterComponent,
+    WishListItemComponent,
   ],
 })
 export class AppComponent {
@@ -29,5 +31,5 @@ export class AppComponent {
     new WishItem('Buy a new boat'),
   ];
 
-  filter = () => {};
+  filter: any;
 }
