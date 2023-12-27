@@ -1,21 +1,25 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { WishItem } from './shared/models/wishItem';
 import { FormsModule } from '@angular/forms';
-
-const filters = [
-  (item: WishItem) => item,
-  (item: WishItem) => !item.isComplete,
-  (item: WishItem) => item.isComplete,
-];
+import { WishItem } from './shared/models/wishItem';
+import { WishListComponent } from './wish-list/wish-list.component';
+import { AddWishFormComponent } from './add-wish-form/add-wish-form.component';
+import { WishFilterComponent } from './wish-filter/wish-filter.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    FormsModule,
+    WishListComponent,
+    AddWishFormComponent,
+    WishFilterComponent,
+  ],
 })
 export class AppComponent {
   items: WishItem[] = [
@@ -25,25 +29,5 @@ export class AppComponent {
     new WishItem('Buy a new boat'),
   ];
 
-  title: string = 'Wishlist';
-  newWish: string = '';
-  filterSelect: string = '0';
-
-  get visibleItems(): WishItem[] {
-    return this.items.filter(filters[this.filterSelect]);
-  }
-
-  toggleItem(item: WishItem) {
-    item.isComplete = !item.isComplete;
-  }
-
-  handleAddWish(e: Event) {
-    e.preventDefault();
-    this.items.push(new WishItem(this.newWish));
-    this.newWish = '';
-  }
-
-  handleDeleteWish(item: WishItem) {
-    this.items.splice(this.items.indexOf(item), 1);
-  }
+  filter = () => {};
 }
