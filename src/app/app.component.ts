@@ -7,6 +7,7 @@ import { WishListComponent } from './wish-list/wish-list.component';
 import { AddWishFormComponent } from './add-wish-form/add-wish-form.component';
 import { WishFilterComponent } from './wish-filter/wish-filter.component';
 import { WishListItemComponent } from './wish-list-item/wish-list-item.component';
+import { EventService } from './shared/services/EventService';
 
 @Component({
   selector: 'app-root',
@@ -32,4 +33,11 @@ export class AppComponent {
   ];
 
   filter: any;
+
+  constructor(events: EventService) {
+    events.listen('removeWish', (wish) => {
+      let wishIndex = this.items.indexOf(wish);
+      this.items.splice(wishIndex, 1);
+    });
+  }
 }
